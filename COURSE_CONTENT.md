@@ -6,6 +6,21 @@
 
 ### 1.1 Introduction to Computer Vision
 
+#### Recognition
+
+This refers to the process of attaching **_semantic_ category labels** to objects, scenes, events, and activities in images. [\[1\]][1]
+
+#### Reconstruction
+
+Traditionally, this involves the **recovery of three-dimensional geometry** from images.\
+More broadly, it can be interpreted as **"inverse graphics"**: estimating shape, spatial layout, reflectance, and illumination. [\[1\]][1]
+
+#### Reorganization
+
+This refers to the **grouping/segmentation** of visual elements.<br>It is the computer vision analog of _perceptual organization_ from Gestalt psychology. [\[1\]][1]
+
+[1]: https://www.sciencedirect.com/science/article/pii/S0167865516000313
+
 ### 1.2 What is an Image?
 
 ---
