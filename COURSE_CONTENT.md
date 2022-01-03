@@ -42,6 +42,48 @@ For our purposes ([slide 18](https://drive.google.com/file/d/15rw06o8WOnqjfQMjPj
 
 ### 2.1 Image Filtering
 
+#### Filter
+
+As generally as possible, a filter is a **function of the local neighborhood** which operates on a signal.\
+This function can be continuous or discrete, linear or non-linear, ... etc, and the "local neighborhood" can even be infinite in extent.
+
+#### Image Filtering
+
+It is the computation of a **function of the local neighborhood** of an image **at each position**.\
+We use filtering to enhance, extract information from, and detect patterns in images.
+
+#### Convolution
+
+As generally as possible, convolution is an **operation** which takes two functions and produces a third function whose value at some point X is the _integral_ of the _product_ of the first function and the second function _flipped in the x direction then offset by X_. Whew!\
+\
+This is relevant to us because the convolution of a given **image** and **filter** is the result of **image filtering**!\
+Note: In the context of digital image processing, _integrals_ are just sums over matrix elements, _products_ are Hadamard products, and _flipping_ is just rotating by 180°.\
+\
+`Todo: check if this is a necessary and sufficient explanation`
+
+#### Correlation
+
+Correlation is the same as convolution, but without the flipping: if you can do one, you can do the other, simply by doing the flipping yourself.\
+**_Correlation is not commutative, but convolution is_**.
+
+#### Kernel
+
+In the context of digital image processing, a kernel is a **2D matrix** which acts as a (linear) filter when **convolved** with another 2D matrix, typically an image.
+
+#### Separability
+
+When used to describe a kernel, separability refers to the kernel's ability to be **factored out** as the **product of two 1D kernels** (one row and one column vector).\
+Given a separable kernel `K` which factors out into `R` and `C`, and an image `I`:\
+`K * I == R * (C * I) == C * (R * I)`, where `*` represents the convolution operator.
+
+#### Linearity
+
+When used to describe a kernel, linearity refers to... `Todo`
+
+#### Correlation and Convolution
+
+`Todo`
+
 ### 2.2 Thinking in Frequency I
 
 ---
