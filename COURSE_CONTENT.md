@@ -23,6 +23,21 @@ This refers to the **grouping/segmentation** of visual elements.<br>It is the co
 
 ### 1.2 What is an Image?
 
+#### Signal
+
+A signal is a **function** of some variable(s), often time or space.\
+Its inputs and outputs typically have physical meaning &mdash; for instance, an image can be understood as a signal: brightness as a function of position.
+
+#### Quantization
+
+This is the process of mapping values from a **larger, continuous, and/or infinite set** to values in a **smaller, discrete, and/or finite set**.<br>It is the basis of discrete signal and image processing.
+
+#### Resolution
+
+For our purposes ([slide 18](https://drive.google.com/file/d/15rw06o8WOnqjfQMjPjdSkrHJ1Qhn-4R9/view)):\
+**Spatial resolution** refers to the linear spacing of a measurement, which, in the context of images, corresponds to the physical separation represented by a pixel &mdash; this could be an angle or a distance.\
+**Geometric resolution** is closer in meaning to [angular resolution](https://en.wikipedia.org/wiki/Angular_resolution), which relates to [resolving power](https://en.wikipedia.org/wiki/Angular_resolution#Definition_of_terms), the Rayleigh criterion, and how "blurry" images are.
+
 ---
 
 ### 2.1 Image Filtering
