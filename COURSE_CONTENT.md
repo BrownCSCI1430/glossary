@@ -127,6 +127,42 @@ The result is a third "hybrid" image that looks like either the first or the sec
 
 ## 3.1 Thinking in Frequency II
 
+### Template Matching
+
+This refers to image filtering when viewed as "comparing an **image of what you want to find** (as the filter) against another image".\
+\
+First, you would zero-center your selected filter by subtracting the mean of its pixels.\
+Then, would correlate the filter with the image (or equivalently, convolve the flipped filter with the image).
+
+### Fourier Theorem
+
+_Any univariate function can be rewritten as a weighted sum of sines and cosines of different frequencies._
+
+### Fourier Series
+
+The Fourier **series** of a function is the series of weighted **Fourier basis functions** which add up to that function.\
+
+### Fourier Basis Functions
+
+These are simply sines and cosines of different (1) **amplitudes** (weights) and (2) **frequencies**.
+
+### Fourier Basis Functions (in 2D)
+
+Sine and cosine functions exist in 2D, and for the purposes of digital image processing, these are what we use to decompose images.\
+In defining a 2D sinusoid, amplitude and phase remain scalar values as with 1D sinusoids, but frequency is now a 2D vector.
+
+### Amplitude-Phase Form
+
+Recall that the sum of a sine and a cosine function, each with some amplitude but the same frequency, is simply a third sinusoid with some **phase offset**. Thus, we can represent every term of a Fourier series with just three values: (1) amplitude, (2) frequency, and (3) phase.\
+\
+The amplitude-phase form encodes this information in two signals: (A) amplitude as a function of frequency, and (B) phase as a function of frequency.\
+Because we're using 2D sinusoids, frequency is 2D: therefore, signals (A) and (B) are typically represented as images, where the position of each pixel is the frequency, and the intensity of that pixel is the corresponding value (amplitude or phase).
+
+### Spatial Domain vs Fourier/Frequency Domain
+
+Recall that an image can be thought of as brightness as a function of 2D **position**. Since the input is a point in space, we can say that this image is in the spatial domain.\
+An amplitude-phase form image, on the other hand, is amplitude/phase as a function of 2D **frequency**, and is thus in the Fourier/frequency domain.
+
 ---
 
 ## 4.1 Thinking in Frequency III
