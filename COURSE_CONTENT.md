@@ -50,69 +50,78 @@ For our purposes ([slide 18](https://drive.google.com/file/d/15rw06o8WOnqjfQMjPj
 ### Filter
 
 As generally as possible, a filter is a **function of the local neighborhood** which operates on a signal.\
-This function can be continuous or discrete, linear or non-linear, ... etc, and the "local neighborhood" can even be infinite in extent.
+This function can be continuous or discrete, linear or non-linear, ... etc, and the "local neighborhood" can be any size: from a single point to an infinite extent.
 
 ### Image Filtering
 
-It is the computation of a **function of the local neighborhood** of an image **at each position**.\
-We use filtering to enhance, extract information from, and detect patterns in images.
+Image filtering is the computation of a **function of the local neighborhood** of an image **at each position**.\
+It may be used to _enhance_, _extract information_ from, or _detect patterns_ in images.
 
 ### Convolution
 
-As generally as possible, convolution is an **operation** which takes two functions and produces a third function whose value at some point X is the _integral_ of the _product_ of the first function and the second function _flipped in the x direction then offset by X_. Whew!\
+As generally as possible, convolution is an **operation** which takes two functions and produces a third function, one whose value at some point X is the **integral** of the **product** of the first function and the second function **flipped in the x direction then offset by X**. Whew!\
 \
-This is relevant to us because the convolution of a given **image** and **filter** is the result of **image filtering**!\
-Note: In the context of digital image processing, _integrals_ are just sums over matrix elements, _products_ are Hadamard products, and _flipping_ is just rotating by 180°.\
+This is relevant because **image filtering** can be implemented by convolving an **image** and a **filter**.\
 \
-`Todo: check if this is a necessary and sufficient explanation`
+Aside: In the context of digital image processing, "integrals" are just sums over matrix elements, "products" refer to Hadamard products, and "flipping" is just rotating a 2D matrix by 180°.\
+\
+**Important: _convolution is both commutative and associative._**
 
 ### Correlation
 
-Correlation is the same as convolution, but without the flipping: if you can do one, you can do the other, simply by doing the flipping yourself.\
-**_Correlation is not commutative, but convolution is_**.
+Correlation is the same as convolution, but **without the flipping**.\
+Observe that if you are using a 180°-rotationally-symmetric kernel, then convolution and correlation are identical.\
+\
+**Important: _correlation is neither commutative nor associative._**
 
 ### Kernel
 
-In the context of digital image processing, a kernel is a **2D matrix** which acts as a (linear) filter when **convolved** with another 2D matrix, typically an image.
+In the context of digital image processing, a kernel is a **2D matrix** which acts as a filter when **convolved** with another 2D matrix, typically an image.
 
 ### Separability
 
 When used to describe a kernel, separability refers to the kernel's ability to be **factored out** as the **product of two 1D kernels** (one row and one column vector).\
+\
 Given a separable kernel `K` which factors out into `R` and `C`, and an image `I`:\
 `K * I == R * (C * I) == C * (R * I)`, where `*` represents the convolution operator.
 
-### Linearity
+### Linearity and Shift Invariance
 
-When used to describe a kernel, linearity refers to... `Todo`
-
-### Correlation and Convolution
-
-`Todo`
+These are properties of operations.\
+\
+Suppose you have some operation `T` such that `y(t) = T( x(t) )`.\
+If `T` is linear: `T( a * x1(t) + b * x2(t) ) = a * y1(t) + b * y2(t)`\
+If `T` is shift-invariant: `y(t - s) = T( x(t - s) )`\
+\
+Any operation which is **both linear and shift-invariant** can be represented as a `convolution`.\
+Convolution itself is also linear and shift-invariant.
 
 ## 2.2 Thinking in Frequency I
 
 ### Aliasing
 
-Aliasing refers two signals becoming indistinguishable from one another due to sampling. When you don't have enough samples, there are chances that you won't be able to capture the underlying patterns in the signals. Aliasing can be potentially dangerous and could result in some "errors", eg. car wheels appearing to spin the wrong way, or striped shirts looking strange on color television.
-
-Solutions to the aliasing problem:
-
-- sample more
-- apply Gaussian filtering to the signal before sampling. This essentially removes all frequencies that are greater than half the new sampling frequency (see Nyquist-Shannon for why this is useful)
+Aliasing refers to when a signal becomes **indistinguishable** from a different signal, due to **sampling**.\
+\
+An example is when car wheels appear to spin the wrong way in videos &mdash; the orientation of the wheel with time is the signal, and the video's frames are the samples. If your sampling rate is too low, a fast clockwise rotation can look exactly like a counter-clockwise one.
 
 ### Nyquist-Shannon Sampling Theorem
 
-The Nyquist-Shannon Sampling Theorem provides a rule of thumb for generating samples in order to avoid aliasing. The theorem states the following:
+The Nyquist-Shannon Sampling Theorem provides a rule for sampling which prevents aliasing:\
+\
+_When sampling a signal **at discrete intervals**, the sampling frequency must be `≥ 2 * f_max`, where `f_max`is the absolute maximum frequency of the input signal._\
+\
+If this rule is followed, it is possible reconstruct the original signal _perfectly_ from its samples &mdash; lossless compression.
 
-when sampling a signal at discrete intervals, the sampling frequency must be ≥ 2 \* f<sub>max</sub>, where f<sub>max</sub> = max frequency of the input signal
+### Preventing Aliasing
 
-`I dont know how to cleanly display equations in markdown :(`
+Following the Nyquist-Shannon sampling theorem, you can either:\
+a. Increase the sampling rate, or\
+b. Decrease the maximum frequency of the input signal. This can be done via Gaussian filtering.
 
-### Hybrid images
+### Hybrid Images
 
-The combination of the high frequencies of one image and the low frequencies of another image. The result of the combination is an image that appears to look like either the first original image or the second depending on what scale you view the hybrid at.
-
-####
+These images are formed by combining the high-frequency components of one image with the low-frequency components of another image.\
+The result is a third "hybrid" image that looks like either the first or the second image, depending on the scale at which it is viewed.
 
 ---
 
