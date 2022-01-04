@@ -1,38 +1,43 @@
 # Course Content
 
-> Note: the headers below are numbered by lecture number, then PDF number.
+> Notes:
+>
+> - the headers below are numbered by lecture number, then PDF number.
+> - we have attempted to be as _precise_ and _accurate_ as possible, but there may be errors. feel free to correct them.
+> - it may not be necessary to understand all these concepts with as much _detail_ as is listed below.
+> - `ctrl + F` / `cmd + F` is your friend!
 
 ---
 
-### 1.1 Introduction to Computer Vision
+## 1.1 Introduction to Computer Vision
 
-#### Recognition
+### Recognition
 
 This refers to the process of attaching **_semantic_ category labels** to objects, scenes, events, and activities in images. [\[1\]][1]
 
-#### Reconstruction
+### Reconstruction
 
 Traditionally, this involves the **recovery of three-dimensional geometry** from images.\
 More broadly, it can be interpreted as **"inverse graphics"**: estimating shape, spatial layout, reflectance, and illumination. [\[1\]][1]
 
-#### Reorganization
+### Reorganization
 
 This refers to the **grouping/segmentation** of visual elements.<br>It is the computer vision analog of _perceptual organization_ from Gestalt psychology. [\[1\]][1]
 
 [1]: https://www.sciencedirect.com/science/article/pii/S0167865516000313
 
-### 1.2 What is an Image?
+## 1.2 What is an Image?
 
-#### Signal
+### Signal
 
 A signal is a **function** of some variable(s), often time or space.\
 Its inputs and outputs typically have physical meaning &mdash; for instance, an image can be understood as a signal: brightness as a function of position.
 
-#### Quantization
+### Quantization
 
 This is the process of mapping values from a **larger, continuous, and/or infinite set** to values in a **smaller, discrete, and/or finite set**.<br>It is the basis of discrete signal and image processing.
 
-#### Resolution
+### Resolution
 
 For our purposes ([slide 18](https://drive.google.com/file/d/15rw06o8WOnqjfQMjPjdSkrHJ1Qhn-4R9/view)):\
 **Spatial resolution** refers to the linear spacing of a measurement, which, in the context of images, corresponds to the physical separation represented by a pixel &mdash; this could be an angle or a distance.\
@@ -40,19 +45,19 @@ For our purposes ([slide 18](https://drive.google.com/file/d/15rw06o8WOnqjfQMjPj
 
 ---
 
-### 2.1 Image Filtering
+## 2.1 Image Filtering
 
-#### Filter
+### Filter
 
 As generally as possible, a filter is a **function of the local neighborhood** which operates on a signal.\
 This function can be continuous or discrete, linear or non-linear, ... etc, and the "local neighborhood" can even be infinite in extent.
 
-#### Image Filtering
+### Image Filtering
 
 It is the computation of a **function of the local neighborhood** of an image **at each position**.\
 We use filtering to enhance, extract information from, and detect patterns in images.
 
-#### Convolution
+### Convolution
 
 As generally as possible, convolution is an **operation** which takes two functions and produces a third function whose value at some point X is the _integral_ of the _product_ of the first function and the second function _flipped in the x direction then offset by X_. Whew!\
 \
@@ -61,134 +66,136 @@ Note: In the context of digital image processing, _integrals_ are just sums over
 \
 `Todo: check if this is a necessary and sufficient explanation`
 
-#### Correlation
+### Correlation
 
 Correlation is the same as convolution, but without the flipping: if you can do one, you can do the other, simply by doing the flipping yourself.\
 **_Correlation is not commutative, but convolution is_**.
 
-#### Kernel
+### Kernel
 
 In the context of digital image processing, a kernel is a **2D matrix** which acts as a (linear) filter when **convolved** with another 2D matrix, typically an image.
 
-#### Separability
+### Separability
 
 When used to describe a kernel, separability refers to the kernel's ability to be **factored out** as the **product of two 1D kernels** (one row and one column vector).\
 Given a separable kernel `K` which factors out into `R` and `C`, and an image `I`:\
 `K * I == R * (C * I) == C * (R * I)`, where `*` represents the convolution operator.
 
-#### Linearity
+### Linearity
 
 When used to describe a kernel, linearity refers to... `Todo`
 
-#### Correlation and Convolution
+### Correlation and Convolution
 
 `Todo`
 
-### 2.2 Thinking in Frequency I
+## 2.2 Thinking in Frequency I
 
-#### Aliasing
+### Aliasing
 
 Aliasing refers two signals becoming indistinguishable from one another due to sampling. When you don't have enough samples, there are chances that you won't be able to capture the underlying patterns in the signals. Aliasing can be potentially dangerous and could result in some "errors", eg. car wheels appearing to spin the wrong way, or striped shirts looking strange on color television.
 
 Solutions to the aliasing problem:
- - sample more
- - apply Gaussian filtering to the signal before sampling. This essentially removes all frequencies that are greater than half the new sampling frequency (see Nyquist-Shannon for why this is useful)
 
-#### Nyquist-Shannon Sampling Theorem
+- sample more
+- apply Gaussian filtering to the signal before sampling. This essentially removes all frequencies that are greater than half the new sampling frequency (see Nyquist-Shannon for why this is useful)
+
+### Nyquist-Shannon Sampling Theorem
 
 The Nyquist-Shannon Sampling Theorem provides a rule of thumb for generating samples in order to avoid aliasing. The theorem states the following:
 
-when sampling a signal at discrete intervals, the sampling frequency must be ≥ 2 * f<sub>max</sub>, where f<sub>max</sub> = max frequency of the input signal
+when sampling a signal at discrete intervals, the sampling frequency must be ≥ 2 \* f<sub>max</sub>, where f<sub>max</sub> = max frequency of the input signal
 
 `I dont know how to cleanly display equations in markdown :(`
 
-#### Hybrid images 
+### Hybrid images
 
-The combination of the high frequencies of one image and the low frequencies of another image. The result of the combination is an image that appears to look like either the first original image or the second depending on what scale you view the hybrid at. 
+The combination of the high frequencies of one image and the low frequencies of another image. The result of the combination is an image that appears to look like either the first original image or the second depending on what scale you view the hybrid at.
 
-#### 
----
-
-### 3.1 Thinking in Frequency II
+####
 
 ---
 
-### 4.1 Thinking in Frequency III
-
-### 4.2 Edge Detection
+## 3.1 Thinking in Frequency II
 
 ---
 
-### 5.1 Interest Points and Corners
+## 4.1 Thinking in Frequency III
 
-### 5.2 Local Image Features
-
----
-
-### 6.1 Feature Matching
-
-### 6.2 Light and Color
+## 4.2 Edge Detection
 
 ---
 
-### 7.1 Camera Geometry
+## 5.1 Interest Points and Corners
+
+## 5.2 Local Image Features
 
 ---
 
-### 8.1 Camera Calibration
+## 6.1 Feature Matching
 
-### 8.2 Stereo Vision
-
----
-
-### 9.1 Epipolar Geometry, Stereo Disparity Matching, and RANSAC
+## 6.2 Light and Color
 
 ---
 
-### 10.1 Reconstruction and Depth Cameras
+## 7.1 Camera Geometry
 
 ---
 
-### 11.1 Machine Learning: Unsupervised Learning
+## 8.1 Camera Calibration
+
+## 8.2 Stereo Vision
 
 ---
 
-### 12.1 Machine Learning: Supervised Learning
+## 9.1 Epipolar Geometry, Stereo Disparity Matching, and RANSAC
 
 ---
 
-### 13.1 Recognition, Bag of Features, and Large-scale Instance ### Recognition
+## 10.1 Reconstruction and Depth Cameras
 
 ---
 
-### 14.1 Large-scale Scene Recognition and Advanced Feature Encoding
-
-### 14.2 Detection with Sliding Windows: Dalal Triggs
+## 11.1 Machine Learning: Unsupervised Learning
 
 ---
 
-### 15.1 Detection with Sliding Windows: Viola Jones
-
-### 15.2 Descriptor Failure and Big Data
+## 12.1 Machine Learning: Supervised Learning
 
 ---
 
-### 16.1 Neural Networks and Convolutional Neural Networks
+## 13.1 Recognition, Bag of Features, and Large-scale Instance ### Recognition
 
 ---
 
-### 17.1 Training Neural Networks
+## 14.1 Large-scale Scene Recognition and Advanced Feature Encoding
+
+## 14.2 Detection with Sliding Windows: Dalal Triggs
 
 ---
 
-### 18.1 What do CNNs learn?
+## 15.1 Detection with Sliding Windows: Viola Jones
+
+## 15.2 Descriptor Failure and Big Data
 
 ---
 
-### 19.1 Architectures: ResNets, R-CNNs, FCNs, and UNets
+## 16.1 Neural Networks and Convolutional Neural Networks
 
 ---
 
-### 20.1 Social Good and Dataset Bias
+## 17.1 Training Neural Networks
+
+---
+
+## 18.1 What do CNNs learn?
+
+---
+
+## 19.1 Architectures: ResNets, R-CNNs, FCNs, and UNets
+
+---
+
+## 20.1 Social Good and Dataset Bias
 
 ---
