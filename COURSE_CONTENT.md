@@ -86,6 +86,27 @@ When used to describe a kernel, linearity refers to... `Todo`
 
 ### 2.2 Thinking in Frequency I
 
+#### Aliasing
+
+Aliasing refers two signals becoming indistinguishable from one another due to sampling. When you don't have enough samples, there are chances that you won't be able to capture the underlying patterns in the signals. Aliasing can be potentially dangerous and could result in some "errors", eg. car wheels appearing to spin the wrong way, or striped shirts looking strange on color television.
+
+Solutions to the aliasing problem:
+ - sample more
+ - apply Gaussian filtering to the signal before sampling. This essentially removes all frequencies that are greater than half the new sampling frequency (see Nyquist-Shannon for why this is useful)
+
+#### Nyquist-Shannon Sampling Theorem
+
+The Nyquist-Shannon Sampling Theorem provides a rule of thumb for generating samples in order to avoid aliasing. The theorem states the following:
+
+when sampling a signal at discrete intervals, the sampling frequency must be ≥ 2 * f<sub>max</sub>, where f<sub>max</sub> = max frequency of the input signal
+
+`I dont know how to cleanly display equations in markdown :(`
+
+#### Hybrid images 
+
+The combination of the high frequencies of one image and the low frequencies of another image. The result of the combination is an image that appears to look like either the first original image or the second depending on what scale you view the hybrid at. 
+
+#### 
 ---
 
 ### 3.1 Thinking in Frequency II
