@@ -7,6 +7,8 @@
 > - it may not be necessary to understand all these concepts with as much _detail_ as is listed below.
 > - `ctrl + F` / `cmd + F` is your friend!
 
+`Todo: find a place to define low and high pass filters, preferably after introducing frequency`
+
 ---
 
 ## 1.1 Introduction to Computer Vision
@@ -34,8 +36,8 @@
 | Term | Definition |
 | ---- | ---- |
 | **Filter** | As generally as possible, a filter is a **function of the local neighborhood** which operates on a signal.<br>This function can be continuous or discrete, linear or non-linear, ... etc, and the "local neighborhood" can be any size: from a single point to an infinite extent. |
-| **Image Filtering** | Image filtering is the computation of a **function of the local neighborhood** of an image **at each position**.<br>It may be used to _enhance_, _extract information_ from, or _detect patterns_ in images. |
-| **Convolution** | As generally as possible, convolution is an **operation** which takes two functions and produces a third function, one whose value at some point X is the **integral** of the **product** of the first function and the second function **flipped in the x direction then offset by X**. Whew!<br><br>This is relevant because **image filtering** can be implemented by convolving an **image** and a **filter**.<br><br>Aside: In the context of digital image processing, "integrals" are just sums over matrix elements, "products" refer to Hadamard products, and "flipping" is just rotating a 2D matrix by 180°.<br><br>**Important: _convolution is both commutative and associative._** |
+| **Image Filtering** | Image filtering is the computation of a **function of the local neighborhood** of an image **at each position**.<br>It may be used to _enhance_, _extract information_ from, or _detect patterns_ in images.<br><br>**Image filtering** can be implemented by **convolving** an **image** and a **filter**.\ |
+| **Convolution** | As generally as possible, convolution is an **operation** which takes two functions and produces a third function, one whose value at some point X is the **integral** of the **product** of the first function and the second function **flipped in the x direction then offset by X**. Whew!<br><br>In the context of digital image processing, "integrals" are just sums over matrix elements, "products" refer to Hadamard products, and "flipping" is just rotating a 2D matrix by 180°. `Todo: add link to animation`<br><br>**Important: _convolution is both commutative and associative._** |
 | **Correlation** | Correlation is the same as convolution, but **without the flipping**.<br>Observe that if you are using a 180°-rotationally-symmetric kernel, then convolution and correlation are identical.<br><br>**Important: _correlation is neither commutative nor associative._** |
 | **Kernel** | In the context of digital image processing, a kernel is a **2D matrix** which acts as a filter when **convolved** with another 2D matrix, typically an image. |
 | **Separability** | When used to describe a kernel, separability refers to the kernel's ability to be **factored out** as the **product of two 1D kernels** (one row and one column vector).<br><br>Given a separable kernel `K` which factors out into `R` and `C`, and an image `I`:<br>`K * I == R * (C * I) == C * (R * I)`, where `*` represents the convolution operator. |
@@ -58,10 +60,9 @@
 | ---- | ---- |
 | **Template Matching** | This refers to image filtering when viewed as "comparing an **image of what you want to find** (as the filter) against another image".<br><br>First, you would zero-center your selected filter by subtracting the mean of its pixels.<br>Then, would correlate the filter with the image (or equivalently, convolve the flipped filter with the image). |
 | **Fourier Theorem** | _Any univariate function can be rewritten as a weighted sum of sines and cosines of different frequencies._ |
-| **Fourier Series** | The Fourier **series** of a function is the series of weighted **Fourier basis functions** which add up to that function.\ |
-| **Fourier Basis Functions** | These are simply sines and cosines of different (1) **amplitudes** (weights) and (2) **frequencies**. |
-| **Fourier Basis Functions (in 2D)** | Sine and cosine functions exist in 2D, and for the purposes of digital image processing, these are what we use to decompose images.<br>In defining a 2D sinusoid, amplitude and phase remain scalar values as with 1D sinusoids, but frequency is now a 2D vector. |
-| **Amplitude-Phase Form** | Recall that the sum of a sine and a cosine function, each with some amplitude but the same frequency, is simply a third sinusoid with some **phase offset**. Thus, we can represent every term of a Fourier series with just three values: (1) amplitude, (2) frequency, and (3) phase.<br><br>The amplitude-phase form encodes this information in two signals: (A) amplitude as a function of frequency, and (B) phase as a function of frequency.<br>Because we're using 2D sinusoids, frequency is 2D: therefore, signals (A) and (B) are typically represented as images, where the position of each pixel is the frequency, and the intensity of that pixel is the corresponding value (amplitude or phase). |
+| **Fourier Transform, Decomposition, Series** | The Fourier **transform** of a function is the representation of that function as a weighted sum of **Fourier basis functions**. The process of breaking a function into its Fourier basis functions is known as Fourier **decomposition**.<br><br>The Fourier **series** is similar to the Fourier transform, but it is used exclusively for _periodic_ functions. So, unless you're taking some strange photos, you'll probably want the Fourier transform instead. |
+| **Fourier Basis Functions** | These are simply sines and cosines of different (1) **amplitudes** (weights) and (2) **frequencies**.<br><br>In 2D Fourier decomposition (of 2D images, say), we use 2D sinusoids: amplitude (and phase) are scalar values just as with 1D sinusoids, but frequency is now a 2D vector, since you need to account for rate of change in both directions. |
+| **Amplitude-Phase Form** | The amplitude-phase form aims to encode the Fourier transform of an image.<br><br>Recall that the sum of a sine and a cosine function, each with some amplitude but the same frequency, is simply a third sinusoid with some **phase offset**. Thus, we can represent every term of a Fourier decomposition with three values: (1) amplitude, (2) frequency, and (3) phase.<br><br>The amplitude-phase form encodes this information in two signals: (A) amplitude as a function of frequency, and (B) phase as a function of frequency.<br>Because we're using 2D sinusoids, frequency is 2D: therefore, signals (A) and (B) are typically represented as images, where the position of each pixel is the frequency, and the intensity of that pixel is the corresponding amplitude/phase of the term with that frequency. |
 | **Spatial Domain vs Fourier/Frequency Domain** | Recall that an image can be thought of as brightness as a function of 2D **position**. Since the input is a point in space, we can say that this image is in the spatial domain.<br>An amplitude-phase form image, on the other hand, is amplitude/phase as a function of 2D **frequency**, and is thus in the Fourier/frequency domain. |
 
 ---
@@ -70,11 +71,21 @@
 
 | Term | Definition |
 | ---- | ---- |
+| **Duality, or, The Convolution Theorem** | Convolution in the spatial domain is equivalent to (element-wise) multiplication in the frequency domain.<br>Consequently, the **Fourier transform** of the convolution of two functions is the product of their Fourier transforms. |
+| **Image Filtering in the Frequency Domain** | Recall that image filtering is implemented by the convolution of an **image** and a **filter**. Now that we understand **the convolution theorem**, we can view image filtering as the product of the Fourier transforms of the image and the filter. |
+| **Box / Sinc Dual** | The Fourier transform of a box function is a sinc function, and vice versa.<br>This is slightly troublesome: a box function in the frequency domain would be an ideal low-pass filter, but to implement it, you'd need a filter that looks like a sinc function in the spatial domain.<br>Unfortunately, sinc functions are infinite in extent, and we do not have infinitely-wide filters. |
+| **Artifacts** | What if you tried to blur an image with a **box filter**?<br><br>You'd get artifacts. The Fourier transform of a box filter is a sinc, which has non-zero components in the high-frequency range. Consequently, your output image will retain any existing high-frequency components.<br>`Todo: add link to example image` |
+| **Ringing Artifacts / Gibbs Phenomenon** | What if you tried to blur an image with an **approximation of a sinc filter**?<br><br>You'd still get artifacts. Because the approximation is imperfect, the Fourier transform of this filter will be an imperfect box with **overshoots near the discontinuities** (see: [Gibbs phenomenon](https://en.wikipedia.org/wiki/Gibbs_phenomenon)). Consequently, your output image will exhibit "ringing" artifacts near edges.<br>`Todo: add link to example image` |
 
 ## 4.2 Edge Detection
 
 | Term | Definition |
 | ---- | ---- |
+| **Edges** | An edge is a place of rapid change in the image intensity function.<br>This change can be in overall brightness, or in colors &mdash; consider a sudden jump from #FF0000 (red) to ##00FF00 (blue).<br><br>Because of their association with _high rate of change_, edges correspond directly to **extrema in the first derivative of image signals**. |
+| **Detection and Localization** | These are qualities of edge detectors.<br><br>**Detection** refers to the detector's ability to find all real edges, ignoring noise and other artifacts.<br>**Localization** refers to the detector's ability to return a single-point output close to the true edge. |
+| **Gaussian Filter (And Its Derivative)** | `Todo` |
+| **Canny Edge Detector** | `Todo` |
+| **Minimum Suppression / Non-Maximal Suppression** | `Todo` |
 
 ---
 
