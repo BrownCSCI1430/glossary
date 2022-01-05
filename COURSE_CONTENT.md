@@ -201,6 +201,32 @@ You'd still get artifacts. Because the approximation is imperfect, the Fourier t
 
 ## 4.2 Edge Detection
 
+### Edges
+
+An edge is a place of rapid change in the image intensity function.\
+This change can be in overall brightness, or in colors &mdash; consider a sudden jump from #FF0000 (red) to ##00FF00 (blue).\
+\
+Because of their association with _high rate of change_, edges correspond directly to **extrema in the first derivative of image signals**.
+
+### Detection and Localization
+
+These are qualities of edge detectors.\
+\
+**Detection** refers to the detector's ability to find all real edges, ignoring noise and other artifacts.\
+**Localization** refers to the detector's ability to return a single-point output close to the true edge.
+
+### Gaussian Filter (And Its Derivative)
+
+`Todo`
+
+### Canny Edge Detector
+
+`Todo`
+
+### Minimum Suppression / Non-Maximal Suppression
+
+`Todo`
+
 ---
 
 ## 5.1 Interest Points and Corners
