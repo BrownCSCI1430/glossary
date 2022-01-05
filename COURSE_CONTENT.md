@@ -170,6 +170,35 @@ An amplitude-phase form image, on the other hand, is amplitude/phase as a functi
 
 ## 4.1 Thinking in Frequency III
 
+### Duality, or, The Convolution Theorem
+
+Convolution in the spatial domain is equivalent to (element-wise) multiplication in the frequency domain.\
+Consequently, the **Fourier transform** of the convolution of two functions is the product of their Fourier transforms.
+
+### Image Filtering in the Frequency Domain
+
+Recall that image filtering is implemented by the convolution of an **image** and a **filter**. Now that we understand **the convolution theorem**, we can view image filtering as the product of the Fourier transforms of the image and the filter.
+
+### Box / Sinc Dual
+
+The Fourier transform of a box function is a sinc function, and vice versa.\
+This is slightly troublesome: a box function in the frequency domain would be an ideal low-pass filter, but to implement it, you'd need a filter that looks like a sinc function in the spatial domain.\
+Unfortunately, sinc functions are infinite in extent, and we do not have infinitely-wide filters.
+
+### Artifacts
+
+What if you tried to blur an image with a **box filter**?\
+\
+You'd get artifacts. The Fourier transform of a box filter is a sinc, which has non-zero components in the high-frequency range. Consequently, your output image will retain any existing high-frequency components.\
+`Todo: add link to example image`
+
+### Ringing Artifacts / Gibbs Phenomenon
+
+What if you tried to blur an image with an **approximation of a sinc filter**?\
+\
+You'd still get artifacts. Because the approximation is imperfect, the Fourier transform of this filter will be an imperfect box with **overshoots near the discontinuities** (see: [Gibbs phenomenon](https://en.wikipedia.org/wiki/Gibbs_phenomenon)). Consequently, your output image will exhibit "ringing" artifacts near edges.\
+`Todo: add link to example image`
+
 ## 4.2 Edge Detection
 
 ---
