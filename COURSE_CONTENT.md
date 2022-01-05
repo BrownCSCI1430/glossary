@@ -7,6 +7,8 @@
 > - it may not be necessary to understand all these concepts with as much _detail_ as is listed below.
 > - `ctrl + F` / `cmd + F` is your friend!
 
+`Todo: find a place to define low and high pass filters, preferably after introducing frequency`
+
 ---
 
 ## 1.1 Introduction to Computer Vision
@@ -55,15 +57,15 @@ This function can be continuous or discrete, linear or non-linear, ... etc, and 
 ### Image Filtering
 
 Image filtering is the computation of a **function of the local neighborhood** of an image **at each position**.\
-It may be used to _enhance_, _extract information_ from, or _detect patterns_ in images.
+It may be used to _enhance_, _extract information_ from, or _detect patterns_ in images.\
+\
+**Image filtering** can be implemented by **convolving** an **image** and a **filter**.\
 
 ### Convolution
 
 As generally as possible, convolution is an **operation** which takes two functions and produces a third function, one whose value at some point X is the **integral** of the **product** of the first function and the second function **flipped in the x direction then offset by X**. Whew!\
 \
-This is relevant because **image filtering** can be implemented by convolving an **image** and a **filter**.\
-\
-Aside: In the context of digital image processing, "integrals" are just sums over matrix elements, "products" refer to Hadamard products, and "flipping" is just rotating a 2D matrix by 180°.\
+In the context of digital image processing, "integrals" are just sums over matrix elements, "products" refer to Hadamard products, and "flipping" is just rotating a 2D matrix by 180°. `Todo: add link to animation`\
 \
 **Important: _convolution is both commutative and associative._**
 
@@ -138,25 +140,26 @@ Then, would correlate the filter with the image (or equivalently, convolve the f
 
 _Any univariate function can be rewritten as a weighted sum of sines and cosines of different frequencies._
 
-### Fourier Series
+### Fourier Transform, Decomposition, Series
 
-The Fourier **series** of a function is the series of weighted **Fourier basis functions** which add up to that function.\
+The Fourier **transform** of a function is the representation of that function as a weighted sum of **Fourier basis functions**. The process of breaking a function into its Fourier basis functions is known as Fourier **decomposition**.\
+\
+The Fourier **series** is similar to the Fourier transform, but it is used exclusively for _periodic_ functions. So, unless you're taking some strange photos, you'll probably want the Fourier transform instead.
 
 ### Fourier Basis Functions
 
-These are simply sines and cosines of different (1) **amplitudes** (weights) and (2) **frequencies**.
-
-### Fourier Basis Functions (in 2D)
-
-Sine and cosine functions exist in 2D, and for the purposes of digital image processing, these are what we use to decompose images.\
-In defining a 2D sinusoid, amplitude and phase remain scalar values as with 1D sinusoids, but frequency is now a 2D vector.
+These are simply sines and cosines of different (1) **amplitudes** (weights) and (2) **frequencies**.\
+\
+In 2D Fourier decomposition (of 2D images, say), we use 2D sinusoids: amplitude (and phase) are scalar values just as with 1D sinusoids, but frequency is now a 2D vector, since you need to account for rate of change in both directions.
 
 ### Amplitude-Phase Form
 
-Recall that the sum of a sine and a cosine function, each with some amplitude but the same frequency, is simply a third sinusoid with some **phase offset**. Thus, we can represent every term of a Fourier series with just three values: (1) amplitude, (2) frequency, and (3) phase.\
+The amplitude-phase form aims to encode the Fourier transform of an image.\
+\
+Recall that the sum of a sine and a cosine function, each with some amplitude but the same frequency, is simply a third sinusoid with some **phase offset**. Thus, we can represent every term of a Fourier decomposition with three values: (1) amplitude, (2) frequency, and (3) phase.\
 \
 The amplitude-phase form encodes this information in two signals: (A) amplitude as a function of frequency, and (B) phase as a function of frequency.\
-Because we're using 2D sinusoids, frequency is 2D: therefore, signals (A) and (B) are typically represented as images, where the position of each pixel is the frequency, and the intensity of that pixel is the corresponding value (amplitude or phase).
+Because we're using 2D sinusoids, frequency is 2D: therefore, signals (A) and (B) are typically represented as images, where the position of each pixel is the frequency, and the intensity of that pixel is the corresponding amplitude/phase of the term with that frequency.
 
 ### Spatial Domain vs Fourier/Frequency Domain
 
