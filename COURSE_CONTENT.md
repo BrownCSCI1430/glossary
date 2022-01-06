@@ -256,6 +256,75 @@ This can easily be improved by setting, say, two thresholds corresponding to "we
 
 ## 5.1 Interest Points and Corners
 
+### Features
+
+These are parts of an image which are distinctive and likely useful for computing similarities between images.\
+A feature typically consists of (1) a **key/interest point**, which has some position, and (2) a **feature descriptor**, which encodes some information about the point's immediate neighborhood / surrounding patch in the image. Either (1) or (2) might also include scale or orientation information, among other things.
+
+### Distinctiveness, Repeatability, and Compactness/Efficiency
+
+These are qualities of feature representations.\
+\
+**Distinctiveness** refers to the ability to uniquely identify a point. This may be challenging, regardless of representation, in images with repeated elements.\
+**Repeatability** refers to the ability to locate the same feature in multiple images despite _geometric_ and _photometric_ differences.\
+**Compactness/Efficiency** refers to the ability of the representation to be as small (compact) as possible, for performance.\
+
+### Geometric Transformations
+
+These refer to transformations in translation, rotation, scale, and perspective, etc.
+
+### Photometric Transformations
+
+These refer to transformations in reflectance and illumination, etc.
+
+### Corners
+
+To get _distinctive_ and _repeatable_ features, we want to look for points which are stable in appearance, with respect to small variations in position.\
+Thus, we choose to look for **corners**: when looking at them through a small **window**, shifting away from them in _any direction_ will cause a large change in the window's overall intensity.
+
+### Corner Detection by Auto-Correlation
+
+In this case, auto-correlation refers to our method of looking through a window, evaluating intensity, and comparing it with the intensity resulting from a shifted window. We are effectively correlating (a part of) the image with (another part of) itself, hence auto-correlation.\
+\
+We would like to do this for every point in the image, and keep the points where the auto-correlation function looks like a strong **peak**. You might say that such points have a high "corner-ness" score.\
+\
+Unfortunately, this requires a lot of computation, far too costly for our purposes.
+
+### Harris Corner Detection
+
+The Harris corner detector solves the above problem by way of approximations and linear algebra wizardry, ultimately reducing the cost of computing a "cornerness" score for each point.\
+Please refer to the slides for steps!
+
+### Taylor Series Expansion
+
+The Taylor series of a function is an infinite series of terms that are expressed in terms of the function's derivatives at a single point. Most functions are equal to the sum of their Taylor series near that point.\
+\
+Taylor series expansion refers to the process of finding these terms for a given function.\
+It was one of tools used to arrive at the Harris corner detector algorithm, in approximating the computation of the auto-correlation function.
+
+### Second Moment Matrix (M)
+
+This is a 2x2 matrix with the following elements:\
+`⎡ Σ (I_x ^ 2), Σ (I_x * I_y) ⎤`\
+`⎣ Σ (I_x * I_y), Σ (I_y ^ 2) ⎦`\
+Where `I_x` and `I_y` refer to the image derivatives, at some point, in the x and y directions respectively. These summations are over the window described earlier.\
+\
+This matrix is square, [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix), and [diagonalizable](https://en.wikipedia.org/wiki/Diagonalizable_matrix).\
+It has two eigenvalues `λ_1` and `λ_2` &mdash; please refer to the slides for their visual interpretation!
+
+### Harris Cornerness Score
+
+This is equal to `C`, where `C = λ_1 * λ_2 - α * (λ_1 + λ_2) ^ 2` and `α` is some constant around 0.04 - 0.06.\
+\
+With the second moment matrix, its determinant is equal to the product of its eigenvalues, and its trace is the sum of its eigenvalues, so this equation can be rewritten as: `C = det(M) - α * trace(M) ^ 2`, thereby avoiding even having to calculate the eigenvalues.
+
+### Invariance and Covariance
+
+Loosely, invariance = "does not change with", and covariance = "changes with".\
+Ideally, we'd like features to be _invariant_ to **photometric** transformations and _covariant_ to **geometric** ones.\
+\
+Harris corner locations are covariant wrt translation and rotation, **but not scaling(!)**. They are also only partially invariant to affine intensity changes.
+
 ## 5.2 Local Image Features
 
 ---
