@@ -13,7 +13,7 @@
 
 ## 1.1 Introduction to Computer Vision
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 | **Recognition** | This refers to the process of attaching **_semantic_ category labels** to objects, scenes, events, and activities in images. [\[1\]][1] |
 | **Reconstruction** | Traditionally, this involves the **recovery of three-dimensional geometry** from images.<br>More broadly, it can be interpreted as **"inverse graphics"**: estimating shape, spatial layout, reflectance, and illumination. [\[1\]][1] |
@@ -23,7 +23,7 @@
 
 ## 1.2 What is an Image?
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 | **Signal** | A signal is a **function** of some variable(s), often time or space.<br>Its inputs and outputs typically have physical meaning &mdash; for instance, an image can be understood as a signal: brightness as a function of position. |
 | **Quantization** | This is the process of mapping values from a **larger, continuous, and/or infinite set** to values in a **smaller, discrete, and/or finite set**.<br>It is the basis of discrete signal and image processing. |
@@ -33,7 +33,7 @@
 
 ## 2.1 Image Filtering
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 | **Filter** | As generally as possible, a filter is a **function of the local neighborhood** which operates on a signal.<br>This function can be continuous or discrete, linear or non-linear, ... etc, and the "local neighborhood" can be any size: from a single point to an infinite extent. |
 | **Image Filtering** | Image filtering is the computation of a **function of the local neighborhood** of an image **at each position**.<br>It may be used to _enhance_, _extract information_ from, or _detect patterns_ in images.<br><br>**Image filtering** can be implemented by **convolving** an **image** and a **filter**.\ |
@@ -45,7 +45,7 @@
 
 ## 2.2 Thinking in Frequency I
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 | **Aliasing** | Aliasing refers to when a signal becomes **indistinguishable** from a different signal, due to **sampling**.<br><br>An example is when car wheels appear to spin the wrong way in videos &mdash; the orientation of the wheel with time is the signal, and the video's frames are the samples. If your sampling rate is too low, a fast clockwise rotation can look exactly like a counter-clockwise one. |
 | **Nyquist-Shannon Sampling Theorem** | The Nyquist-Shannon Sampling Theorem provides a rule for sampling which prevents aliasing:<br><br>_When sampling a signal **at discrete intervals**, the sampling frequency must be `≥ 2 * f_max`, where `f_max`is the absolute maximum frequency of the input signal._<br><br>If this rule is followed, it is possible reconstruct the original signal _perfectly_ from its samples &mdash; lossless compression. |
@@ -56,9 +56,9 @@
 
 ## 3.1 Thinking in Frequency II
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
-| **Template Matching** | This refers to image filtering when viewed as "comparing an **image of what you want to find** (as the filter) against another image".<br><br>First, you would zero-center your selected filter by subtracting the mean of its pixels.<br>Then, would correlate the filter with the image (or equivalently, convolve the flipped filter with the image). |
+| **Template Matching** | This refers to image filtering when viewed as "comparing an **image of what you want to find** (as the filter) against another image".<br><br>This involves zero-centering your selected filter by subtracting the mean of its pixels, then correlating the filter with the image (or equivalently, convolving the flipped filter with the image). |
 | **Fourier Theorem** | _Any univariate function can be rewritten as a weighted sum of sines and cosines of different frequencies._ |
 | **Fourier Transform, Decomposition, Series** | The Fourier **transform** of a function is the representation of that function as a weighted sum of **Fourier basis functions**. The process of breaking a function into its Fourier basis functions is known as Fourier **decomposition**.<br><br>The Fourier **series** is similar to the Fourier transform, but it is used exclusively for _periodic_ functions. So, unless you're taking some strange photos, you'll probably want the Fourier transform instead. |
 | **Fourier Basis Functions** | These are simply sines and cosines of different (1) **amplitudes** (weights) and (2) **frequencies**.<br><br>In 2D Fourier decomposition (of 2D images, say), we use 2D sinusoids: amplitude (and phase) are scalar values just as with 1D sinusoids, but frequency is now a 2D vector, since you need to account for rate of change in both directions. |
@@ -69,7 +69,7 @@
 
 ## 4.1 Thinking in Frequency III
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 | **Duality, or, The Convolution Theorem** | Convolution in the spatial domain is equivalent to (element-wise) multiplication in the frequency domain.<br>Consequently, the **Fourier transform** of the convolution of two functions is the product of their Fourier transforms. |
 | **Image Filtering in the Frequency Domain** | Recall that image filtering is implemented by the convolution of an **image** and a **filter**. Now that we understand **the convolution theorem**, we can view image filtering as the product of the Fourier transforms of the image and the filter. |
@@ -79,149 +79,164 @@
 
 ## 4.2 Edge Detection
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
-| **Edges** | An edge is a place of rapid change in the image intensity function.<br>This change can be in overall brightness, or in colors &mdash; consider a sudden jump from #FF0000 (red) to ##00FF00 (blue).<br><br>Because of their association with _high rate of change_, edges correspond directly to **extrema in the first derivative of image signals**. |
+| **Edges** | An edge is a place of rapid change in the image intensity function.<br>This change can be in overall brightness, or in colors &mdash; consider a sudden jump from #FF0000 (red) to ##00FF00 (blue).<br><br>Edges are "high-frequency content" &mdash; that is, they correspond to the image's high frequency components. |
+| **Edge Detection via Taking the Derivative** | Because of their association with _high rate of change_, edges correspond directly to **extrema in the first derivative of image signals**.<br>However, because of the presence of noise, we can't simply take the derivative of an image &mdash; it must first be smoothed (e.g. with a Gaussian filter). |
+| **1D Gaussian Filter** | A Gaussian filter is a filter whose shape in the spatial domain is a Gaussian function.<br>Interestingly, its Fourier transform (i.e. its shape in the frequency domain) is simply another Gaussian (with inverted sigma). <br>**It is thus useful as a low-pass filter, e.g. for _blurring/smoothing_**.<br><br>Even though the Gaussian function is technically of infinite extent, in practice, it is effectively zero three standard deviations away from the mean, which is why we can approximate it fairly well with discrete Gaussian kernels. |
+| **2D Gaussian Filter** | The above holds true for the 2D Gaussian filter.<br>2D Gaussian filters are **separable**. |
+| **The 1st Derivative of a Gaussian** | Recall that in order to find edges, we need to (1) **blur** (convolve by a Gaussian), then (2) **differentiate** (convolve by a kernel which achieves differentiation).<br>Since convolution is [**differentiable**](https://en.wikipedia.org/wiki/Convolution#Differentiation), we can combine these two steps, and instead convolve our image by the 1st derivative of a Gaussian. |
 | **Detection and Localization** | These are qualities of edge detectors.<br><br>**Detection** refers to the detector's ability to find all real edges, ignoring noise and other artifacts.<br>**Localization** refers to the detector's ability to return a single-point output close to the true edge. |
-| **Gaussian Filter (And Its Derivative)** | `Todo` |
-| **Canny Edge Detector** | `Todo` |
-| **Minimum Suppression / Non-Maximal Suppression** | `Todo` |
+| **Canny Edge Detector** | The [**Canny edge detector**](https://ieeexplore.ieee.org/document/4767851) is "probably the most widely-used edge detector in computer vision".<br>Please refer to the slides for steps! |
+| **Non-Maximum Suppression** | This refers to the reduction of multi-pixel wide "ridges" to single-pixel wide lines, which is achieved by discarding pixels which are not the local maximum along the direction of most change (the gradient). |
+| **Hysteresis Thresholding** | Regular thresholding involves discarding areas below a certain fixed threshold value.<br>This can easily be improved by setting, say, two thresholds corresponding to "weak" and "strong" edges.<br>**Hysteresis** thresholding further improves on this, by discarding "weak" edges which are not connected to "strong" edges. Refer to the [`scikit-image` documentation](https://scikit-image.org/docs/dev/auto_examples/filters/plot_hysteresis.html) for a visual example. |
 
 ---
 
 ## 5.1 Interest Points and Corners
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
+| **Features** | These are parts of an image which are distinctive and likely useful for computing similarities between images.<br>A feature typically consists of (1) a **key/interest point**, which has some position, and (2) a **feature descriptor**, which encodes some information about the point's immediate neighborhood / surrounding patch in the image. Either (1) or (2) might also include scale or orientation information, among other things. |
+| **Distinctiveness, Repeatability, and Compactness/Efficiency** | These are qualities of feature representations.<br><br>**Distinctiveness** refers to the ability to uniquely identify a point. This may be challenging, regardless of representation, in images with repeated elements.<br>**Repeatability** refers to the ability to locate the same feature in multiple images despite _geometric_ and _photometric_ differences.<br>**Compactness/Efficiency** refers to the ability of the representation to be as small (compact) as possible, for performance.\ |
+| **Geometric Transformations** | These refer to transformations in translation, rotation, scale, and perspective, etc. |
+| **Photometric Transformations** | These refer to transformations in reflectance and illumination, etc. |
+| **Corners** | To get _distinctive_ and _repeatable_ features, we want to look for points which are stable in appearance, with respect to small variations in position.<br>Thus, we choose to look for **corners**: when looking at them through a small **window**, shifting away from them in _any direction_ will cause a large change in the window's overall intensity. |
+| **Corner Detection by Auto-Correlation** | In this case, auto-correlation refers to our method of looking through a window, evaluating intensity, and comparing it with the intensity resulting from a shifted window. We are effectively correlating (a part of) the image with (another part of) itself, hence auto-correlation.<br><br>We would like to do this for every point in the image, and keep the points where the auto-correlation function looks like a strong **peak**. You might say that such points have a high "corner-ness" score.<br><br>Unfortunately, this requires a lot of computation, far too costly for our purposes. |
+| **Harris Corner Detection** | The Harris corner detector solves the above problem by way of approximations and linear algebra wizardry, ultimately reducing the cost of computing a "cornerness" score for each point.<br>Please refer to the slides for steps! |
+| **Taylor Series Expansion** | The Taylor series of a function is an infinite series of terms that are expressed in terms of the function's derivatives at a single point. Most functions are equal to the sum of their Taylor series near that point.<br><br>Taylor series expansion refers to the process of finding these terms for a given function.<br>It was one of tools used to arrive at the Harris corner detector algorithm, in approximating the computation of the auto-correlation function. |
+| **Second Moment Matrix (M)** | This is a 2x2 matrix with the following elements:<br>`⎡ Σ (I_x ^ 2), Σ (I_x * I_y) ⎤`<br>`⎣ Σ (I_x * I_y), Σ (I_y ^ 2) ⎦`<br>Where `I_x` and `I_y` refer to the image derivatives, at some point, in the x and y directions respectively. These summations are over the window described earlier.<br><br>This matrix is square, [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix), and [diagonalizable](https://en.wikipedia.org/wiki/Diagonalizable_matrix).<br>It has two eigenvalues `λ_1` and `λ_2` &mdash; please refer to the slides for their visual interpretation! |
+| **Harris Cornerness Score** | This is equal to `C`, where `C = λ_1 * λ_2 - α * (λ_1 + λ_2) ^ 2` and `α` is some constant around 0.04 - 0.06.<br><br>With the second moment matrix, its determinant is equal to the product of its eigenvalues, and its trace is the sum of its eigenvalues, so this equation can be rewritten as: `C = det(M) - α * trace(M) ^ 2`, thereby avoiding even having to calculate the eigenvalues. |
+| **Invariance and Covariance** | Loosely, invariance = "does not change with", and covariance = "changes with".<br>Ideally, we'd like features to be _invariant_ to **photometric** transformations and _covariant_ to **geometric** ones.<br><br>Harris corner locations are covariant wrt translation and rotation, **but not scaling(!)**. They are also only partially invariant to affine intensity changes. |
 
 ## 5.2 Local Image Features
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 
 ---
 
 ## 6.1 Feature Matching
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 
 ## 6.2 Light and Color
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 
 ---
 
 ## 7.1 Camera Geometry
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 
 ---
 
 ## 8.1 Camera Calibration
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 
 ## 8.2 Stereo Vision
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 
 ---
 
 ## 9.1 Epipolar Geometry, Stereo Disparity Matching, and RANSAC
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 
 ---
 
 ## 10.1 Reconstruction and Depth Cameras
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 
 ---
 
 ## 11.1 Machine Learning: Unsupervised Learning
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 
 ---
 
 ## 12.1 Machine Learning: Supervised Learning
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 
 ---
 
 ## 13.1 Recognition, Bag of Features, and Large-scale Instance ### Recognition
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 
 ---
 
 ## 14.1 Large-scale Scene Recognition and Advanced Feature Encoding
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 
 ## 14.2 Detection with Sliding Windows: Dalal Triggs
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 
 ---
 
 ## 15.1 Detection with Sliding Windows: Viola Jones
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 
 ## 15.2 Descriptor Failure and Big Data
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 
 ---
 
 ## 16.1 Neural Networks and Convolutional Neural Networks
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 
 ---
 
 ## 17.1 Training Neural Networks
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 
 ---
 
 ## 18.1 What do CNNs learn?
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 
 ---
 
 ## 19.1 Architectures: ResNets, R-CNNs, FCNs, and UNets
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 
 ---
 
 ## 20.1 Social Good and Dataset Bias
 
-| Term | Definition |
+| Concept | Definition / Significance |
 | ---- | ---- |
 
 ---
