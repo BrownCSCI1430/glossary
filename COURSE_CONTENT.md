@@ -133,8 +133,7 @@ The result is a third "hybrid" image that looks like either the first or the sec
 
 This refers to image filtering when viewed as "comparing an **image of what you want to find** (as the filter) against another image".\
 \
-First, you would zero-center your selected filter by subtracting the mean of its pixels.\
-Then, would correlate the filter with the image (or equivalently, convolve the flipped filter with the image).
+This involves zero-centering your selected filter by subtracting the mean of its pixels, then correlating the filter with the image (or equivalently, convolving the flipped filter with the image).
 
 ### Fourier Theorem
 
@@ -206,7 +205,30 @@ You'd still get artifacts. Because the approximation is imperfect, the Fourier t
 An edge is a place of rapid change in the image intensity function.\
 This change can be in overall brightness, or in colors &mdash; consider a sudden jump from #FF0000 (red) to ##00FF00 (blue).\
 \
-Because of their association with _high rate of change_, edges correspond directly to **extrema in the first derivative of image signals**.
+Edges are "high-frequency content" &mdash; that is, they correspond to the image's high frequency components.
+
+### Edge Detection via Taking the Derivative
+
+Because of their association with _high rate of change_, edges correspond directly to **extrema in the first derivative of image signals**.\
+However, because of the presence of noise, we can't simply take the derivative of an image &mdash; it must first be smoothed (e.g. with a Gaussian filter).
+
+### 1D Gaussian Filter
+
+A Gaussian filter is a filter whose shape in the spatial domain is a Gaussian function.\
+Interestingly, its Fourier transform (i.e. its shape in the frequency domain) is simply another Gaussian (with inverted sigma). \
+**It is thus useful as a low-pass filter, e.g. for _blurring/smoothing_**.\
+\
+Even though the Gaussian function is technically of infinite extent, in practice, it is effectively zero three standard deviations away from the mean, which is why we can approximate it fairly well with discrete Gaussian kernels.
+
+### 2D Gaussian Filter
+
+The above holds true for the 2D Gaussian filter.\
+2D Gaussian filters are **separable**.
+
+### The 1st Derivative of a Gaussian
+
+Recall that in order to find edges, we need to (1) **blur** (convolve by a Gaussian), then (2) **differentiate** (convolve by a kernel which achieves differentiation).\
+Since convolution is [**differentiable**](https://en.wikipedia.org/wiki/Convolution#Differentiation), we can combine these two steps, and instead convolve our image by the 1st derivative of a Gaussian.
 
 ### Detection and Localization
 
@@ -215,17 +237,20 @@ These are qualities of edge detectors.\
 **Detection** refers to the detector's ability to find all real edges, ignoring noise and other artifacts.\
 **Localization** refers to the detector's ability to return a single-point output close to the true edge.
 
-### Gaussian Filter (And Its Derivative)
-
-`Todo`
-
 ### Canny Edge Detector
 
-`Todo`
+The [**Canny edge detector**](https://ieeexplore.ieee.org/document/4767851) is "probably the most widely-used edge detector in computer vision".\
+Please refer to the slides for steps!
 
-### Minimum Suppression / Non-Maximal Suppression
+### Non-Maximum Suppression
 
-`Todo`
+This refers to the reduction of multi-pixel wide "ridges" to single-pixel wide lines, which is achieved by discarding pixels which are not the local maximum along the direction of most change (the gradient).
+
+### Hysteresis Thresholding
+
+Regular thresholding involves discarding areas below a certain fixed threshold value.\
+This can easily be improved by setting, say, two thresholds corresponding to "weak" and "strong" edges.\
+**Hysteresis** thresholding further improves on this, by discarding "weak" edges which are not connected to "strong" edges. Refer to the [`scikit-image` documentation](https://scikit-image.org/docs/dev/auto_examples/filters/plot_hysteresis.html) for a visual example.
 
 ---
 
