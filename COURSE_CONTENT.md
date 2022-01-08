@@ -110,7 +110,7 @@ An example is when car wheels appear to spin the wrong way in videos &mdash; the
 
 The Nyquist-Shannon Sampling Theorem provides a rule for sampling which prevents aliasing:\
 \
-_When sampling a signal **at discrete intervals**, the sampling frequency must be `≥ 2 * f_max`, where `f_max`is the absolute maximum frequency of the input signal._\
+_When sampling a signal **at discrete intervals**, the sampling frequency must be `≥ 2 * f_max`, where `f_max` is the absolute maximum frequency of the input signal._\
 \
 If this rule is followed, it is possible reconstruct the original signal _perfectly_ from its samples &mdash; lossless compression.
 
@@ -169,7 +169,7 @@ An amplitude-phase form image, on the other hand, is amplitude/phase as a functi
 
 ## 4.1 Thinking in Frequency III
 
-### Duality, or, The Convolution Theorem
+### The Convolution Theorem
 
 Convolution in the spatial domain is equivalent to (element-wise) multiplication in the frequency domain.\
 Consequently, the **Fourier transform** of the convolution of two functions is the product of their Fourier transforms.
