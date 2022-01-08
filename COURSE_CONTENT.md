@@ -360,6 +360,28 @@ The algorithm also performs:\
 
 ## 6.1 Feature Matching
 
+### Euclidean Distance
+
+This is a measure of the **magnitude of the difference** between two vectors.\
+Given two vectors `p` and `q`, it is equal to `sqrt( Σ( (p[i] - q[i])^2 ) )`.
+
+### Cosine Similarity / Cosine Distance
+
+This is a measure of the similarity between two non-zero(!) vectors in terms of the **cosine of the angle between them**.\
+Given two vectors `p` and `q`, it is equal to `dot(p, q) / norm(p) / norm(q)`, where `dot` produces a dot product, and `norm` gets the magnitude of the vector.
+
+### Nearest Neighbor Distance Ratio (NNDR)
+
+In the context of feature matching, and given some notion of distance between two features, the NNDR is equal to `NN1`, the distance between a point and its nearest neighbor, divided by `NN2`, the distance between that same point and its second closest neighbor.
+
+### SURF, Shape Context, Geometric Blur, Self-Similarity, etc...
+
+These are all other ways to get local image description.\
+\
+**SURF** is a fast approximation of SIFT, which uses 2D box filters & integral images.\
+**Shape context** bins points instead of orientations, and uses log-polar binning.\
+... and so on. (refer to the slides if you're interested!)
+
 ## 6.2 Light and Color
 
 ---
