@@ -261,11 +261,19 @@ This can easily be improved by setting, say, two thresholds corresponding to "we
 These are parts of an image which are distinctive and likely useful for computing similarities between images.\
 A feature typically consists of (1) a **key/interest point**, which has some position, and (2) a **feature descriptor**, which encodes some information about the point's immediate neighborhood / surrounding patch in the image. Either (1) or (2) might also include scale or orientation information, among other things.
 
+### Detection, Description, and Matching
+
+These are the three steps involved in identifying feature point correspondences between multiple images.\
+\
+**Detection** refers to the process of finding **key points**.\
+**Description** refers to the process of extracting **feature descriptors** from the areas around each key point.\
+**Matching** refers to the process of comparing the **features** of two or more images, and figuring out which features in each correspond to features in the others.\
+
 ### Distinctiveness, Repeatability, and Compactness/Efficiency
 
 These are qualities of feature representations.\
 \
-**Distinctiveness** refers to the ability to uniquely identify a point. This may be challenging, regardless of representation, in images with repeated elements.\
+**Distinctiveness** refers to the ability to uniquely identify a point, which may be challenging, regardless of representation, in images with repeated elements. This can be\
 **Repeatability** refers to the ability to locate the same feature in multiple images despite _geometric_ and _photometric_ differences.\
 **Compactness/Efficiency** refers to the ability of the representation to be as small (compact) as possible, for performance.\
 
@@ -292,7 +300,7 @@ Unfortunately, this requires a lot of computation, far too costly for our purpos
 
 ### Harris Corner Detection
 
-The Harris corner detector solves the above problem by way of approximations and linear algebra wizardry, ultimately reducing the cost of computing a "cornerness" score for each point.\
+The Harris corner detector solves the above problem by way of approximations and linear-algebraic manipulations, ultimately reducing the cost of computing a "cornerness" score for each point (see the entry for the _Harris Cornerness Score_ below).\
 Please refer to the slides for steps!
 
 ### Taylor Series Expansion
@@ -305,8 +313,8 @@ It was one of tools used to arrive at the Harris corner detector algorithm, in a
 ### Second Moment Matrix (M)
 
 This is a 2x2 matrix with the following elements:\
-`⎡ Σ (I_x ^ 2), Σ (I_x * I_y) ⎤`\
-`⎣ Σ (I_x * I_y), Σ (I_y ^ 2) ⎦`\
+`⎡ Σ( I_x ^ 2 ), Σ( I_x * I_y ) ⎤`\
+`⎣ Σ( I_x * I_y ), Σ( I_y ^ 2 ) ⎦`\
 Where `I_x` and `I_y` refer to the image derivatives, at some point, in the x and y directions respectively. These summations are over the window described earlier.\
 \
 This matrix is square, [symmetric](https://en.wikipedia.org/wiki/Symmetric_matrix), and [diagonalizable](https://en.wikipedia.org/wiki/Diagonalizable_matrix).\
@@ -323,7 +331,7 @@ With the second moment matrix, its determinant is equal to the product of its ei
 Loosely, invariance = "does not change with", and covariance = "changes with".\
 Ideally, we'd like features to be _invariant_ to **photometric** transformations and _covariant_ to **geometric** ones.\
 \
-Harris corner locations are covariant wrt translation and rotation, **but not scaling(!)**. They are also only partially invariant to affine intensity changes.
+Harris corner locations are covariant wrt translation and rotation, **but not scaling(!)**. They are also only partially invariant to affine intensity changes, due to the effects of thresholding.
 
 ## 5.2 Local Image Features
 
