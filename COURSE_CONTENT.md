@@ -409,6 +409,32 @@ Bayer filters are a cheaper and more compact solution to color imaging &mdash; i
 
 ## 7.1 Camera Geometry
 
+### Camera
+
+A camera can be understood as a **dimension reduction machine**, which maps a 3D world to a 2D image.
+
+### Parametric Global Transformations
+
+A parametric global transformation is one which is the same for all points p (global), and can be described by a few numbers (parameters).
+
+### Classes of Transformations
+
+\- **Displacement**: preserves distances, oriented angles, and handedness. _Translations_ only.\
+\- **_Proper_-Rigid**: preserves distances, **non-oriented** angles, and handedness. _Rotations_, plus the above.\
+\- **Rigid/Euclidean**: preserves distances and non-oriented angles. _Reflections_, plus the above.\
+\- **Similarity**: preserves **ratios** of distances, and non-oriented angles. _Scaling_, plus the above.\
+\- **Affine**: preserves ratios of distances, and the **parallel-ness** of lines. _Skewing/shearing_, plus the above.\
+\- **Projective**: preserves the **straightness** of lines (collinearity). _Projective warps_, plus the above.
+
+### Linear Transformations
+
+These are transformations which can be represented as **matrices**, such that applying the transformation on a point is just a matter of matrix multiplication.\
+Note that **translation** for a point in an n-dimensional space is **_not linear_**, unless you look at the transformation from an (n+1)-dimensional space (see: homogenous coordinates).
+
+### More
+
+`Todo`
+
 ---
 
 ## 8.1 Camera Calibration
