@@ -384,6 +384,27 @@ These are all other ways to get local image description.\
 
 ## 6.2 Light and Color
 
+### Frequency Spectrum
+
+Light can be _completely described_ physically by its **spectrum**, the intensity of light (per unit time) for each wavelength.\
+You've probably seen this yourself: a rainbow, or a prism or diffraction grating, can split light into its separate wavelengths and reveal its spectrum.
+
+### Cones and Rods
+
+These are photoreceptors (light-receiving cells) that can be found in the retina of your eye.\
+\
+**Cones** detect light around a specific color, or to be precise, wavelength. Most humans are trichromats: we have cones corresponding to the 564–580 nm, 534–545 nm, and 420–440 nm wavelengths, which provides our color vision.\
+**Rods** detect light of a much wider range of wavelengths (for humans, that's the visible spectrum). They are much more sensitive than cones and thus contribute significantly to our low-light vision, but are also "color-blind".
+
+### Color Cameras
+
+Cameras produce images with color by encoding three separate color channels.\
+At its simplest, a color camera has three sensors, one per color channel: light comes in, gets split based on its color, and hits the appropriate sensor. The requisite splitting can be achieved by an arrangement of prisms.
+
+### Bayer Filter
+
+Bayer filters are a cheaper and more compact solution to color imaging &mdash; instead of using optical splitting and three sensors, a grid of **color filters** is placed over a square grid of sensors. Twice as many "green" sensors are used than red and blue, both to approximate human spectral sensitivity, and make it a _lot_ easier to tile 3 colors into a 2x2 pattern unit.
+
 ---
 
 ## 7.1 Camera Geometry
