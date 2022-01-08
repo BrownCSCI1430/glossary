@@ -335,6 +335,27 @@ Harris corner locations are covariant wrt translation and rotation, **but not sc
 
 ## 5.2 Local Image Features
 
+### Templates and Histograms
+
+These are two ways to represent image features. They can be used as **feature descriptors**.\
+\
+**Templates** are basically smaller images (intensities, gradients) that can be compared against the local region of a feature point.\
+**Histograms** are simply counts or bins of the presence of certain "sub"-features, like particular colors or textures (e.g. oriented gradients), again in a window around the key point.
+
+### Scale-Invariant Feature Transform (SIFT)
+
+SIFT is an algorithm used to detect, describe, and match local features in images, invented by David Lowe in 1999. Here's [the paper](https://www.cs.ubc.ca/~lowe/papers/ijcv04.pdf).
+
+### SIFT Descriptors
+
+These are the feature descriptors used in SIFT &mdash; each feature point is represented by a vector (of length 128) containing information about orientations in its vicinity.\
+Gradients of a 16x16 area around the point are found; then, this area is broken into 16 4x4 areas, and the gradients are binned into 8 orientations.\
+The algorithm also performs:\
+\- trilinear interpolation to smooth the output vector,\
+\- gaussian weighting of gradient magnitudes to prioritize orientations closest to the center of the 16x16 region,\
+\- some normalization/clamping of the output vector to reduce the effect of illumination,\
+\- dominant orientation estimation to gain invariance to rotation.\
+
 ---
 
 ## 6.1 Feature Matching
