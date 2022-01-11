@@ -409,7 +409,7 @@ Bayer filters are a cheaper and more compact solution to color imaging &mdash; i
 
 ## 7.1 Camera Geometry
 
-### Camera
+### Cameras
 
 A camera can be understood as a **dimension reduction machine**, which maps a 3D world to a 2D image.
 
@@ -431,35 +431,189 @@ A parametric global transformation is one which is the same for all points p (gl
 These are transformations which can be represented as **matrices**, such that applying the transformation on a point is just a matter of matrix multiplication.\
 Note that **translation** for a point in an n-dimensional space is **_not linear_**, unless you look at the transformation from an (n+1)-dimensional space (see: homogenous coordinates).
 
-### More
+### Homogenous Coordinates
 
-`Todo`
+### Pinhole Cameras
+
+### Aperture
+
+### Lenses
+
+### Depth of Field
+
+### Field of View, Zoom
+
+### Chromatic Aberration
+
+### Barrel and Pin-cushion Distortion
+
+### Camera Projection Matrix
+
+### Extrinsic Matrix
+
+### Intrinsic Matrix
+
+### Orthographic Projection
 
 ---
 
 ## 8.1 Camera Calibration
 
+### Estimating A Camera Matrix with Known Points
+
+### Linear Least-Squares Regression
+
+### Total Least-Squares Regression
+
 ## 8.2 Stereo Vision
+
+### Disparity
 
 ---
 
 ## 9.1 Epipolar Geometry, Stereo Disparity Matching, and RANSAC
 
+### Triangulation, aka Estimating Depth With Calibrated Stereo Cameras + Point Correspondences
+
+### Finding (Good) Point Correspondences
+
+### Epipolar Constraints
+
+### Baseline
+
+### Epipoles
+
+### Epipolar Plane
+
+### Epipolar Lines
+
+### Essential Matrix
+
+### Fundamental Matrix
+
+### Estimating A Fundamental Matrix with Stereo Point Correspondences
+
+### 8-Point Algorithm
+
 ---
 
 ## 10.1 Reconstruction and Depth Cameras
+
+### Epipolar Relation
+
+### Random Sample Consensus (RANSAC)
+
+### Lambertian Reflectance
+
+### Rectification
+
+### Correspondence Problem
+
+### Dense Correspondence Search
+
+### Similarity Cost
+
+### Sum of Squared Differences (SSD)
+
+### Normalized Correlation
+
+### Disparity vs Depth
+
+### Uniqueness Constraint
+
+### Occlusion
+
+### Disparity Gradient Constraint
+
+### Ordering Constraint
+
+### Active Stereo with Structured Light
+
+### LiDAR
+
+### Iterative Closest Points (ICP) Algorithm
 
 ---
 
 ## 11.1 Machine Learning: Unsupervised Learning
 
+### Unsupervised Learning
+
+### ImageNet
+
+### Dimension Reduction
+
+### Principal Component Analysis
+
+### Eigenfaces
+
+### Clustering
+
+### Segmentation
+
+### K-Means Clustering
+
+### Generative, Discriminative
+
+### Agglomerative Clustering
+
+### Mean Shift Clustering
+
+### Spectral Clustering
+
 ---
 
 ## 12.1 Machine Learning: Supervised Learning
 
+### Supervised Learning
+
+### Training, Validation, and Testing Sets
+
+### Coverage, Concision, Directness
+
+### Classification
+
+### The Machine Learning Framework
+
+### Nearest Neighbor Classifier
+
+### Voronoi Cells/Partitioning
+
+### K-Nearest Neighbor Classifier
+
+### Linear Classifier
+
+### Naïve Bayes
+
+### Logistic Regression
+
+### Support Vector Machines
+
+### Linear SVMs
+
+### Nonlinear SVMs
+
+### Kernel Trick
+
+### One vs Others, One vs One
+
 ---
 
-## 13.1 Recognition, Bag of Features, and Large-scale Instance ### Recognition
+## 13.1 Recognition, Bag of Features, and Large-scale Instance Recognition
+
+### Classification Algorithm Ideals
+
+### Generalization
+
+### Generalization Error
+
+### Bias/Variance Trade-Off
+
+### Underfitting
+
+### Overfitting
+
+### Generative and Discriminative Classifiers
 
 ---
 
