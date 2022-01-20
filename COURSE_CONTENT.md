@@ -724,7 +724,7 @@ Note that **translation** for a point in an n-dimensional space is **_not linear
 
 ### Momentum
 
-### Regularization 
+### Regularization
 
 ### Occlusion
 
@@ -744,11 +744,15 @@ Note that **translation** for a point in an n-dimensional space is **_not linear
 
 ### Batch Normalization
 
+Rescales each training data batch by subtracting the mean and dividing by the standard deviation per batch so that the gradients are well-behaved, in that they do not explode or vanish.
+
 ### AlexNet
+
+A convolutional neural network architecture developed in 2012 with 8 learnable layers that achieved a 15.3% error on the ImageNet dataset.
 
 ### Google LeNet
 
-### InceptionNet
+A convolutional neural network architecture developed in 2014 with 22 learnable layers that uses inception modules containing parallel layers. LeNet improved on the results of AlexNet's performance to achieve an error of 6.67% on the ImageNet dataset.
 
 ### ResNet
 
