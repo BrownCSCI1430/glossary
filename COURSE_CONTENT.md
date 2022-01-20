@@ -663,6 +663,13 @@ Note that **translation** for a point in an n-dimensional space is **_not linear
 
 ## 15.2 Descriptor Failure and Big Data
 
+### Discriminative Part-Based Models
+
+### PASCAL VOC 2009
+
+### Paired Dictionary
+
+### Amazon Mechanical Turk
 ---
 
 ## 16.1 Neural Networks and Convolutional Neural Networks
