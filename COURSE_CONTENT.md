@@ -445,24 +445,35 @@ These are transformations which can be represented as **matrices**, such that ap
 Note that **translation** for a point in an n-dimensional space is **_not linear_**, unless you look at the transformation from an (n+1)-dimensional space (see: homogenous coordinates).
 
 ### Homogenous Coordinates
+Converting to homogeneous coordinates requires adding a dimension. Converting from homogenous coordinates requires dividing the original dimension values by the extra dimension value that has been added when conversion. Scale invariance between homogeneous coordinates and cartesian coordinates.
 
 ### Pinhole Cameras
+Involves sensor, pinhole or also known as camera center. Camera center is at the optical center of the camera where all light rays converge, which is the origin of camera coordinates. Focal length is the distance between the sensor and the camera center. Virtual image is projected at one focal length from the camera center towards the real object.
 
 ### Aperture
+Aperture refers to the opening of a lens's diaphragm through which light passes. It expands and shrinks to allow more or less light through to a camera's sensor. It is a pinhole in camera. Varies in size in most cameras.
 
 ### Lenses
+The lens captures the image and delivers it to the image sensor in the camera. Lens will vary in optical quality and price, the lens used determines the quality and resolution of the captured image. Depending on the lense you use, there may be radial distortion of the image.
 
 ### Depth of Field
+Depth of field is one of the essential concepts in photography. Depth of field in a photo refers to the distance between the closest and farthest objects that appears acceptably sharp. Depth of field differs based on camera type, aperture, and focusing distance. The depth of field increases with a narrower aperture and thus increases focus on an object.
 
 ### Field of View, Zoom
+The field of view is the extent of the observable world that is seen at any given moment. The field of view depends of focal length
+where a smaller field of view = larger focal length. Thus, to zoom in, you would have a larger field of view and a smaller focal length.
 
 ### Chromatic Aberration
+Chromatic aberration, also known as color fringing, is a color distortion that creates an outline of unwanted color along the edges of objects in a photograph. Often, it appears along metallic surfaces or where there's a high contrast between light and dark objects, such as a black wall in front of a bright blue sky.
 
 ### Barrel and Pin-cushion Distortion
+Both are a type of fadial distortion where straight lines curve around the image center. Barrel refers to a negative distortion while pin-cushion refers to positive distortion 
 
 ### Camera Projection Matrix
+A matrix which describes the mapping of a pinhole camera from 3D points in the world to 2D points in an image.
 
 ### Extrinsic Matrix
+
 
 ### Intrinsic Matrix
 
