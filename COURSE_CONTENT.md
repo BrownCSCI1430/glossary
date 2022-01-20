@@ -674,20 +674,94 @@ Note that **translation** for a point in an n-dimensional space is **_not linear
 
 ## 16.1 Neural Networks and Convolutional Neural Networks
 
+### Separability in Linear Spaces
+
+### Perceptron
+
+### Binary Classifier
+
+### MultiClass Classifier
+
+### Non-Linearities
+
+### Rectified Linear Unit (ReLU)
+
+### Hyperparameter
+
 ---
 
 ## 17.1 Training Neural Networks
+
+### Convolutional Layer
+
+### Stride
+
+### Pooling Layer
+
+### Local Contrast Normalization
+
+### Hidden Unit
+
+### Feature Map
+
+### Gradient Descent
+
+### Loss
+
+### Softmax
+
+### Training
+
+### Backward Propogation
+
+### Stochastic Gradient Descent
+
+### Data Augmetation
 
 ---
 
 ## 18.1 What do CNNs learn?
 
+### Momentum
+
+### Regularization 
+
+### Occlusion
+
+### Adversarial Patches
+
+### Saliency Maps
+
+### Local Interpretable Model-agostic Explanations (LIME)
+
+### Superpixels
+
+### Neural Style
+
 ---
 
 ## 19.1 Architectures: ResNets, R-CNNs, FCNs, and UNets
 
+### Batch Normalization
+
+### AlexNet
+
+### Google LeNet
+
+### InceptionNet
+
+### ResNet
+
+### Decoder Networks
+
+### UNet
+
+### Two-Stream Networks
 ---
 
 ## 20.1 Social Good and Dataset Bias
+
+
+not adding to until src plans finalized
 
 ---
