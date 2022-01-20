@@ -473,11 +473,13 @@ Both are a type of fadial distortion where straight lines curve around the image
 A matrix which describes the mapping of a pinhole camera from 3D points in the world to 2D points in an image.
 
 ### Extrinsic Matrix
-
+Defines everything outside of the camera. Defines the coordinate space transformation between the two coordinate systems.
 
 ### Intrinsic Matrix
+Defines everything internal of the camera, e.g. focal length, center of projection image
 
 ### Orthographic Projection
+Orthographic projection (Also called “parallel projection”) where the distance from the COP to the image plane is infinite. It is a kind of parallel projection where the projecting lines emerge parallelly from the object surface and incident perpendicularly at the projecting plane.
 
 ---
 
@@ -486,8 +488,10 @@ A matrix which describes the mapping of a pinhole camera from 3D points in the w
 ### Estimating A Camera Matrix with Known Points
 
 ### Linear Least-Squares Regression
+The line that makes the vertical distance from the data points to the regression line as small as possible. It's called a “least squares” because the best line of fit is one that minimizes the variance (the sum of squares of the errors).
 
 ### Total Least-Squares Regression
+
 
 ## 8.2 Stereo Vision
 
