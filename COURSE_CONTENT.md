@@ -11,6 +11,19 @@
 
 ---
 
+# Course Content
+
+> Notes:
+>
+> - the headers below are numbered by lecture number, then PDF number.
+> - we have attempted to be as _precise_ and _accurate_ as possible, but there may be errors. feel free to correct them.
+> - it may not be necessary to understand all these concepts with as much _detail_ as is listed below.
+> - `ctrl + F` / `cmd + F` is your friend!
+
+`Todo: find a place to define low and high pass filters, preferably after introducing frequency`
+
+---
+
 ## 1.1 Introduction to Computer Vision
 
 ### Recognition
@@ -619,11 +632,34 @@ Note that **translation** for a point in an n-dimensional space is **_not linear
 
 ## 14.1 Large-scale Scene Recognition and Advanced Feature Encoding
 
+### Visual Words
+
+### Global Image Descriptors
+
+### Global Texture Descriptors
+
+### Bag of Words (may be covered in an earlier lecture)
+
+### GIST Descriptors
+
+### Gaussian Mixture Model
+
+### The Fisher Vector
+
 ## 14.2 Detection with Sliding Windows: Dalal Triggs
 
+### Object Model
+
+### Dalal-Triggs Pedestrian Detector
 ---
 
 ## 15.1 Detection with Sliding Windows: Viola Jones
+
+### Viola Jones Face Detector
+
+### Boosting
+
+### Attention Cascade
 
 ## 15.2 Descriptor Failure and Big Data
 
