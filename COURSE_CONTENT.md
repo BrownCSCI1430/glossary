@@ -7,8 +7,6 @@
 > - it may not be necessary to understand all these concepts with as much _detail_ as is listed below.
 > - `ctrl + F` / `cmd + F` is your friend!
 
-`Todo: find a place to define low and high pass filters, preferably after introducing frequency`
-
 ---
 
 ## 1.1 Introduction to Computer Vision
@@ -58,8 +56,16 @@ This function can be continuous or discrete, linear or non-linear, ... etc, and 
 
 Image filtering is the computation of a **function of the local neighborhood** of an image **at each position**.\
 It may be used to _enhance_, _extract information_ from, or _detect patterns_ in images.\
-\
+
 **Image filtering** can be implemented by **convolving** an **image** and a **filter**.\
+
+### Low-pass Filter
+
+A low-pass filter, when applied to an image, averages out the changes in pixel intensity, creating a **blurring** or **smoothing** effect.
+
+### High-pass Filter
+
+A high-pass filter, when applied to an image, emphasizes the details and contrasts between pixel intensities, creating a **sharpening** effect.
 
 ### Convolution
 
