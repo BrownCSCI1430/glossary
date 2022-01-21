@@ -11,19 +11,6 @@
 
 ---
 
-# Course Content
-
-> Notes:
->
-> - the headers below are numbered by lecture number, then PDF number.
-> - we have attempted to be as _precise_ and _accurate_ as possible, but there may be errors. feel free to correct them.
-> - it may not be necessary to understand all these concepts with as much _detail_ as is listed below.
-> - `ctrl + F` / `cmd + F` is your friend!
-
-`Todo: find a place to define low and high pass filters, preferably after introducing frequency`
-
----
-
 ## 1.1 Introduction to Computer Vision
 
 ### Recognition
