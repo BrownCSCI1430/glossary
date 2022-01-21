@@ -61,11 +61,11 @@ It may be used to _enhance_, _extract information_ from, or _detect patterns_ in
 
 ### Low-pass Filter
 
-A low-pass filter, when applied to an image, averages out the changes in pixel intensity, creating a **blurring** or **smoothing** effect.
+A low-pass filter, when applied to an image, averages out the changes in pixel intensity, creating a **blurring** or **smoothing** effect. For each pixel, its value will be replaced with some average of its 8 immediate neighbors.
 
 ### High-pass Filter
 
-A high-pass filter, when applied to an image, emphasizes the details and contrasts between pixel intensities, creating a **sharpening** effect.
+A high-pass filter, when applied to an image, emphasizes the details and contrasts between pixel intensities, creating a **sharpening** effect. If one pixel is brighter than its immediate neighbors, it gets boosted. 
 
 ### Convolution
 
