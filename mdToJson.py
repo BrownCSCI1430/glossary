@@ -23,7 +23,7 @@ with open(sys.argv[1], 'r') as f:
                 curr_word = ''
             # otherwise add to definition
             else:
-                glossary_map[curr_word] += stripped_line
+                glossary_map[curr_word] += stripped_line + '\n'
 
 with open('glossary.json', 'w') as outfile:
     outfile.write(json.dumps(glossary_map, indent=4))
