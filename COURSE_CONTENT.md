@@ -489,7 +489,7 @@ The line that makes the vertical distance from the data points to the regression
 ## 8.2 Stereo Vision
 
 ### Disparity
-
+The difference in image location of an object seen by the two cameras in stereo vision, resulting from the horizontal separation of the cameras.
 ---
 
 ## 9.1 Epipolar Geometry, Stereo Disparity Matching, and RANSAC
