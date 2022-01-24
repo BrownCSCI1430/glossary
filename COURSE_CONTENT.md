@@ -55,9 +55,9 @@ This function can be continuous or discrete, linear or non-linear, ... etc, and 
 ### Image Filtering
 
 Image filtering is the computation of a **function of the local neighborhood** of an image **at each position**.\
-It may be used to _enhance_, _extract information_ from, or _detect patterns_ in images.\
+It may be used to _enhance_, _extract information_ from, or _detect patterns_ in images.
 
-**Image filtering** can be implemented by **convolving** an **image** and a **filter**.\
+**Image filtering** can be implemented by **convolving** an **image** and a **filter**.
 
 ### Low-pass Filter
 
@@ -273,7 +273,7 @@ These are the three steps involved in identifying feature point correspondences 
 \
 **Detection** refers to the process of finding **key points**.\
 **Description** refers to the process of extracting **feature descriptors** from the areas around each key point.\
-**Matching** refers to the process of comparing the **features** of two or more images, and figuring out which features in each correspond to features in the others.\
+**Matching** refers to the process of comparing the **features** of two or more images, and figuring out which features in each correspond to features in the others.
 
 ### Distinctiveness, Repeatability, and Compactness/Efficiency
 
@@ -281,7 +281,7 @@ These are qualities of feature representations.\
 \
 **Distinctiveness** refers to the ability to uniquely identify a point, which may be challenging, regardless of representation, in images with repeated elements. This can be\
 **Repeatability** refers to the ability to locate the same feature in multiple images despite _geometric_ and _photometric_ differences.\
-**Compactness/Efficiency** refers to the ability of the representation to be as small (compact) as possible, for performance.\
+**Compactness/Efficiency** refers to the ability of the representation to be as small (compact) as possible, for performance.
 
 ### Geometric Transformations
 
@@ -360,7 +360,7 @@ The algorithm also performs:\
 \- trilinear interpolation to smooth the output vector,\
 \- gaussian weighting of gradient magnitudes to prioritize orientations closest to the center of the 16x16 region,\
 \- some normalization/clamping of the output vector to reduce the effect of illumination,\
-\- dominant orientation estimation to gain invariance to rotation.\
+\- dominant orientation estimation to gain invariance to rotation.
 
 ---
 
