@@ -653,7 +653,7 @@ Given `t` as translation matrix and `R` as rotation matrix, the essential matrix
 
 ### Global Texture Descriptors
 
-### Bag of Words (may be covered in an earlier lecture)
+### Bag of Words
 
 ### GIST Descriptors
 
