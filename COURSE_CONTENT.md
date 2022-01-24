@@ -489,7 +489,7 @@ The line that makes the vertical distance from the data points to the regression
 ## 8.2 Stereo Vision
 
 ### Disparity
-The difference in image location of an object seen by the two cameras in stereo vision, resulting from the horizontal separation of the cameras.
+The difference in distance between the object location seen by the two cameras in stereo vision, resulting from the horizontal separation of the cameras.
 
 ---
 
@@ -502,14 +502,20 @@ The difference in image location of an object seen by the two cameras in stereo 
 ### Epipolar Constraints
 
 ### Baseline
-
+The line that connects two cameras at their camera centres, in stereo vision
 ### Epipoles
+Lies along the baseline, right where the baseline meets either camera planes. A projection of the other camera's image centre.
 
 ### Epipolar Plane
+The plane created by an epipolar line and the baseline.
 
 ### Epipolar Lines
+The straight line of intersection of the epipolar plane with the image plane.
 
 ### Essential Matrix
+Relates corresponding pairs of normalised homogeneous image points across pairs of images.
+Used when finding the geometry of the camera system when the amera is calibrated.
+Given `t` as translation matrix and `R` as rotation matrix, the essential matrix can be found by `t x R`
 
 ### Fundamental Matrix
 
