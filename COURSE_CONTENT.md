@@ -65,7 +65,7 @@ A low-pass filter, when applied to an image, averages out the changes in pixel i
 
 ### High-pass Filter
 
-A high-pass filter, when applied to an image, emphasizes the details and contrasts between pixel intensities, creating a **sharpening** effect. If one pixel is brighter than its immediate neighbors, it gets boosted. 
+A high-pass filter, when applied to an image, emphasizes the details and contrasts between pixel intensities, creating a **sharpening** effect. If one pixel is brighter than its immediate neighbors, it gets boosted.
 
 ### Convolution
 
@@ -460,7 +460,7 @@ where a smaller field of view = larger focal length. Thus, to zoom in, you would
 Chromatic aberration, also known as color fringing, is a color distortion that creates an outline of unwanted color along the edges of objects in a photograph. Often, it appears along metallic surfaces or where there's a high contrast between light and dark objects, such as a black wall in front of a bright blue sky.
 
 ### Barrel and Pin-cushion Distortion
-Both are a type of fadial distortion where straight lines curve around the image center. Barrel refers to a negative distortion while pin-cushion refers to positive distortion 
+Both are a type of fadial distortion where straight lines curve around the image center. Barrel refers to a negative distortion while pin-cushion refers to positive distortion
 
 ### Camera Projection Matrix
 A matrix which describes the mapping of a pinhole camera from 3D points in the world to 2D points in an image.
@@ -712,6 +712,8 @@ Given `t` as translation matrix and `R` as rotation matrix, the essential matrix
 ### Stride
 
 ### Pooling Layer
+
+### Dropout Layer
 
 ### Local Contrast Normalization
 
