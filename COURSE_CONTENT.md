@@ -513,15 +513,23 @@ The plane created by an epipolar line and the baseline.
 The straight line of intersection of the epipolar plane with the image plane.
 
 ### Essential Matrix
-Relates corresponding pairs of normalised homogeneous image points across pairs of images.
-Used when finding the geometry of the camera system when the amera is calibrated.
+A 3 x 3 matrix, relating corresponding pairs of normalised homogeneous image points across pairs of images.
+Used when finding the geometry of the camera system when the camera is calibrated.
+The 8-Point Algorithm is used to estimate the essential matrix.
 Given `t` as translation matrix and `R` as rotation matrix, the essential matrix can be found by `t x R`
 
 ### Fundamental Matrix
+A 3 x 3 matrix, relating corresponding pairs of normalised homogeneous image points across pairs of images.
+Has 7 degrees of freedom, with rank of 2, but 2 degrees of freedom when the determinant of the fundamental matrix is zero.
 
 ### Estimating A Fundamental Matrix with Stereo Point Correspondences
+Given `x` and `x'` as corresponding points in a stereo image pair, and fundamental matrix `F`, `xᵀFx' = 0`
 
 ### 8-Point Algorithm
+Used to estimate the essential matric or the fundamental matric, from a set of corresponding image points.
+Step a. Write down the system of equations using `xᵀFx' = 0`, and convert it into the form of `Af = 0`, where `A` is a matrix and `f` is a vector.
+Step b. Solve f from A using SVD
+Step c. Resolve `det(f) = 0` constraint using SVD
 
 ---
 
