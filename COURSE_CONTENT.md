@@ -71,7 +71,7 @@ A high-pass filter, when applied to an image, emphasizes the details and contras
 
 As generally as possible, convolution is an **operation** which takes two functions and produces a third function, one whose value at some point X is the **integral** of the **product** of the first function and the second function **flipped in the x direction then offset by X**. Whew!\
 \
-In the context of digital image processing, "integrals" are just sums over matrix elements, "products" refer to Hadamard products, and "flipping" is just rotating a 2D matrix by 180°. `Todo: add link to animation`\
+In the context of digital image processing, "integrals" are just sums over matrix elements, "products" refer to Hadamard products, and "flipping" is just rotating a 2D matrix by 180°. [animation](https://miro.medium.com/max/1400/1*Fw-ehcNBR9byHtho-Rxbtw.gif)!\
 \
 **Important: _convolution is both commutative and associative._**
 
@@ -573,6 +573,7 @@ Step c. Resolve `det(f) = 0` constraint using SVD\
 ## 11.1 Machine Learning: Unsupervised Learning
 
 ### Unsupervised Learning
+Uses machine learning algorithms to analyze and cluster unlabeled datasets. The algorithms discover hidden patterns or data groupings without the need for human intervention.
 
 ### ImageNet
 
